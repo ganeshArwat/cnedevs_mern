@@ -1,4 +1,4 @@
 .env
 config.env
 node_modules/
-public/client_media/
+/public/client_media/
