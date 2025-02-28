@@ -40,6 +40,7 @@ const createSendToken = (user, statusCode, res) => {
 
 exports.signUp = catchAsync(async (req, res, next) => {
   const email = req.body.email;
+  console.log(email);
   const user = await User.findOne({ email });
 
   if (user) {

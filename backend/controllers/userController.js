@@ -54,6 +54,8 @@ exports.resizeProfileImage = catchAsync(async (req, res, next) => {
   }
 
   // 2) Resume
+  console.log(req.files);
+
   if (req.files.resume) {
     req.body.resume = `user_resume-${req.user.id}-${Date.now()}.pdf`;
     const resumePath = path.join(
