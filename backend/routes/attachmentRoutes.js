@@ -1,5 +1,5 @@
 const express = require("express");
-const uploadController = require("../controllers/uploadController");
+const attachmentController = require("../controllers/attachmentController");
 const authController = require("../controllers/authController");
 
 const router = express.Router();
@@ -12,11 +12,13 @@ const router = express.Router();
 // delete - "/:id" - delete upload by id
 
 router
-  .route("/")
+  .route("/upload")
   .post(
     authController.protect,
-    uploadController.uploadAttachments,
-    uploadController.uploadFiles
+    attachmentController.uploadAttachments,
+    attachmentController.uploadFiles
   );
+
+router.route("/:id").get(attachmentController.getAttachment).delete(attachmentController.deleteAttachment);
 
 module.exports = router;

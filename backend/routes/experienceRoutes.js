@@ -1,9 +1,9 @@
 const express = require("express");
 const experienceController = require("../controllers/experienceController");
 const authController = require("../controllers/authController");
+const uploadHandler = require("../utils/uploadHelper");
 
 const router = express.Router();
-
 
 // post - "/" - create a new experience
 // get - "/" - get all experiences
@@ -14,12 +14,16 @@ const router = express.Router();
 
 router
   .route("/")
+  .post(
+    authController.protect,
+    uploadHandler("client_media/experience", "experience", "attachments", 5),
+    experienceController.createExperience
+  )
   .get(
     authController.protect,
     authController.restrictTo("admin"),
     experienceController.getAllExperiences
-  )
-  .post(authController.protect, experienceController.createExperience);
+  );
 
 router
   .route("/get_user_experience/:user_id")

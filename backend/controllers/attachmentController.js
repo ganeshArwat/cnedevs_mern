@@ -5,6 +5,9 @@ const factory = require("./handlerFactory");
 const AppError = require("./../utils/appError");
 const path = require("path");
 const fs = require("fs");
+
+// Upload files
+// 1) Create storage
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const uploadPath = path.join(
@@ -82,3 +85,11 @@ exports.uploadFiles = catchAsync(async (req, res) => {
     },
   });
 });
+
+
+// Get attachment by id
+exports.getAttachment = factory.getOne(AttachmentModel);
+
+
+// delete attachment by id
+exports.deleteAttachment = factory.deleteOne(AttachmentModel);

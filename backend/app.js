@@ -14,7 +14,7 @@ const golbalErrorHandler = require('./controllers/errorController');
 
 const userRouter = require('./routes/userRoutes');
 const experienceRouter = require('./routes/experienceRoutes');
-const uploadRouter = require('./routes/uploadRoutes');
+const attachmentRouter = require('./routes/attachmentRoutes');
 
 // process.env.NODE_ENV = 'production';
 
@@ -76,7 +76,7 @@ app.use((req, res, next) => {
 // Routes
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/experience', experienceRouter);
-app.use('/api/v1/upload', uploadRouter);
+app.use('/api/v1/attachment', attachmentRouter);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
